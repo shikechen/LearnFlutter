@@ -43,6 +43,8 @@ class B {
 
 class C = A with B; // 使用with关键字，表示类C是由类A和类B混合而构成  mixins
 
+enum Color { red, green, blue }
+
 class Vector {
   num x, y;
   Vector(this.x, this.y);

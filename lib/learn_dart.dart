@@ -51,6 +51,28 @@ main() {
 
   sayHello4("Chen", 25);
   sayHello4("Chen", 28, "play basketball");
+
+  var arrInt = [1, 2, 3];
+  arrInt.forEach(printNum);
+
+  var f1 = printNum;
+  Function f2 = printNum;
+  var f3 = (int a) => print("a = $a");
+  f1(1);
+  f2(2);
+  f3(3);
+  
+  test((param) {
+    print(param);
+  });
+}
+
+test(Function callback) {
+  callback("hello");
+}
+
+printNum(int a) {
+  print("$a");
 }
 
 sayHello4(String name, int age, [String hobby]) {
@@ -68,6 +90,14 @@ sayHello({String name}) {
 
 sayHello2({name: String}) {
   print("Hello2, my name is $name");
+}
+
+int sum(int a, int b, [int c = 3]) {
+  return a + b + c;
+}
+
+int add4({int a, int b = 3}) {
+  return a + b;
 }
 
 int add(int a, int b) {
