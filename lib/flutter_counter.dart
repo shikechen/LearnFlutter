@@ -14,6 +14,10 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: {
+        'new_page':(context) => NewRoute(),
+        'echo_page':(context) => EchoRoute('I\'m an echo route page'),
+      },
       home: new MyHomePage(
         title: 'Flutter Home Page'
       ),
@@ -62,9 +66,17 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Open new route page'),
               textColor: Colors.blue,
               onPressed: () {
-                Navigator.push(context, new MaterialPageRoute(builder: (context) {
-                  return new NewRoute();
-                }));
+                Navigator.pushNamed(context, 'new_page');
+//                Navigator.push(context, new MaterialPageRoute(builder: (context) {
+//                  return new NewRoute();
+//                }));
+              },
+            ),
+            FlatButton(
+              child: Text('Open echo route page'),
+              textColor: Colors.amber,
+              onPressed: () {
+                Navigator.pushNamed(context, 'echo_page');
               },
             )
           ],
@@ -89,6 +101,24 @@ class NewRoute extends StatelessWidget {
       ),
       body: new Center(
         child: Text('This is a new route page'),
+      ),
+    );
+  }
+}
+
+class EchoRoute extends StatelessWidget {
+  EchoRoute(this.tip);
+  final String tip;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Echo route'),
+      ),
+      body: Center(
+        child: Text(tip),
       ),
     );
   }
