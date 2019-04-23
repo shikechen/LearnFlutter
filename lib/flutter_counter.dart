@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       home: new MyHomePage(
         title: 'Flutter Home Page'
       ),
+      //showPerformanceOverlay: true,
     );
   }
 }
@@ -81,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             new RandomWordsWidget(),
+            new ShowImageWidget(),
           ],
         ),
       ),
@@ -134,5 +136,20 @@ class RandomWordsWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: new Text(wordPair.toString()),
     );
+  }
+}
+
+class ShowImageWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Image.asset('images/dream_lake_colorado.png');
+//    return new DecoratedBox(
+//        decoration: new BoxDecoration(
+//            image: new DecorationImage(
+//              image: new AssetImage('images/dream_lake_colorado.png'),
+//            )
+//        ),
+//    );
   }
 }
