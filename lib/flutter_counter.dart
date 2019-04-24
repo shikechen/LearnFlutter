@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
   runApp(new MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'new_page':(context) => NewRoute(),
         'echo_page':(context) => EchoRoute('I\'m an echo route page'),
+        'cupertino_page':(context) => CupertinoRoute(),
       },
       home: new MyHomePage(
         title: 'Flutter Home Page'
@@ -81,7 +83,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(context, 'echo_page');
               },
             ),
+            FlatButton(
+              child: Text('Open Cupertino route page'),
+              textColor: Colors.green,
+              onPressed: () {
+                Navigator.pushNamed(context, 'cupertino_page');
+              },
+            ),
             new RandomWordsWidget(),
+            new Echo(text: 'Hello Dart 2019/4/24'),
             new ShowImageWidget(),
           ],
         ),
@@ -123,6 +133,45 @@ class EchoRoute extends StatelessWidget {
       ),
       body: Center(
         child: Text(tip),
+      ),
+    );
+  }
+}
+
+class CupertinoRoute extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('Cupertino Demo'),
+      ),
+      child: Center(
+        child: CupertinoButton(
+            color: CupertinoColors.activeBlue,
+            child: Text('Press'),
+            onPressed: () {}
+            ),
+      ),
+    );
+  }
+}
+
+class Echo extends StatelessWidget {
+  
+  const Echo({Key key, @required this.text, this.backgroundColor: Colors.grey});
+  
+  final String text;
+  final Color backgroundColor;
+  
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Center(
+      child: Container(
+        color: backgroundColor,
+        child: Text(text),
       ),
     );
   }
