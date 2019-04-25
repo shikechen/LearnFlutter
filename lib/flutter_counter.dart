@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         'new_page':(context) => NewRoute(),
         'echo_page':(context) => EchoRoute('I\'m an echo route page'),
         'cupertino_page':(context) => CupertinoRoute(),
+        'test_state_page':(context) => TestStateRoute(),
       },
       home: new MyHomePage(
         title: 'Flutter Home Page'
@@ -88,6 +89,13 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.green,
               onPressed: () {
                 Navigator.pushNamed(context, 'cupertino_page');
+              },
+            ),
+            FlatButton(
+              child: Text('Test State page'),
+              textColor: Colors.red,
+              onPressed: () {
+                Navigator.pushNamed(context, 'test_state_page');
               },
             ),
             new RandomWordsWidget(),
@@ -200,5 +208,91 @@ class ShowImageWidget extends StatelessWidget {
 //            )
 //        ),
 //    );
+  }
+}
+
+class TestStateRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return CounterWidget();
+    //return Text('Helllo');
+  }
+}
+
+class CounterWidget extends StatefulWidget {
+  const CounterWidget({Key key, this.initValue: 0});
+
+  final int initValue;
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return new _CounterWidgetState();
+  }
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int _counter;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _counter = widget.initValue;
+    print('initState');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    print('build');
+    return Scaffold(
+//      appBar: AppBar(
+//        title: Text('Test State'),
+//      ),
+      body: Center(
+        child: FlatButton(
+            child: Text('$_counter'),
+            onPressed: () => setState(() => ++_counter
+            ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void didUpdateWidget(CounterWidget oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget');
+  }
+
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    print('deactivate');
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print('dispose');
+  }
+
+  @override
+  void reassemble() {
+    // TODO: implement reassemble
+    super.reassemble();
+    print('reassemble');
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    print('didChangeDependencies');
   }
 }
